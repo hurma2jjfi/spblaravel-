@@ -9,7 +9,7 @@
 
 <h1>Добавить новую экскурсию</h1>
 
-<form action="{{ route('excursions.store') }}" method="POST">
+<form action="{{ route('excursions.store') }}" method="POST" enctype="multipart/form-data"> 
     @csrf
     <label for="title">Название:</label><br>
     <input type="text" id="title" name="title" required><br>
@@ -19,6 +19,12 @@
 
     <label for="price">Цена:</label><br>
     <input type="number" id="price" name="price" step="0.01" required><br><br>
+
+    <label for="duration">Длительность (в минутах):</label><br>
+    <input type="number" id="duration" name="duration" required min="1"><br><br> <!-- Добавлено поле длительности -->
+
+    <label for="photo">Изображение:</label><br> 
+    <input type="file" id="photo" name="photo" accept="image/*"><br><br>
 
     <button type="submit">Добавить экскурсию</button>
 </form>

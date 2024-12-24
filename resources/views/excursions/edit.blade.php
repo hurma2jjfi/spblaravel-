@@ -9,7 +9,7 @@
 
 <h1>Редактировать экскурсию</h1>
 
-<form action="{{ route('excursions.update', $excursion) }}" method="POST">
+<form action="{{ route('excursions.update', $excursion) }}" method="POST" enctype="multipart/form-data"> 
     @csrf
     @method('PUT')
     
@@ -21,6 +21,12 @@
 
     <label for="price">Цена:</label><br>
     <input type="number" id="price" name="price" value="{{ $excursion->price }}" step="0.01" required><br><br>
+
+    <label for="duration">Длительность (в часах):</label><br>
+    <input type="number" id="duration" name="duration" value="{{ $excursion->duration }}" required min="1"><br><br> <!-- Добавлено поле длительности -->
+
+    <label for="photo">Изображение:</label><br>
+    <input type="file" id="photo" name="photo" accept="image/*"><br><br> 
 
     <button type="submit">Обновить экскурсию</button>
 </form>
