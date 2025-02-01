@@ -20,6 +20,7 @@
         @csrf
         <input type="text" name="name" placeholder="Имя" required>
         <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="phone" placeholder="Номер телефона" required>
         <input type="password" name="password" placeholder="Пароль" required>
         <input type="password" name="password_confirmation" placeholder="Подтверждение пароля" required>
         <button type="submit">Зарегистрироваться</button>

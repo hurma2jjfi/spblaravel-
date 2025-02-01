@@ -3,15 +3,22 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
-use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Authenticate extends Middleware
 {
     /**
      * Get the path the user should be redirected to when they are not authenticated.
      */
-    protected function redirectTo(Request $request): ?string
+    protected function redirectTo($request)
     {
-        return $request->expectsJson() ? null : route('login');
+        // Если пользователь пытается получить доступ к /excursions, возвращаем 404
+        if ($request->is('excursions')) {
+            throw new NotFoundHttpException();
+        }
+
+        // Для остальных маршрутов перенаправляем на страницу входа
+        return route('login');
     }
 }
+

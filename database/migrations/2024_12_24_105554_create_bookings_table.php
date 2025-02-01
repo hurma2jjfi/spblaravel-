@@ -10,12 +10,14 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('excursion_id')->constrained()->onDelete('cascade');
-            $table->date('booking_date');
-            $table->integer('number_of_people')->check('number_of_people > 0');
-            $table->decimal('total_price', 10, 2)->check('total_price >= 0');
-            $table->timestamps();
+            $table->string('surname'); // Фамилия
+            $table->string('name'); // Имя
+            $table->string('patronymic'); // Отчество
+            $table->string('phone'); // Номер телефона
+            $table->string('email'); // Электронная почта
+            $table->date('date'); // Дата экскурсии
+            $table->string('excursion'); // Экскурсия
+            $table->timestamps(); // Временные метки created_at и updated_at
         });
     }
 

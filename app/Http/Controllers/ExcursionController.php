@@ -5,14 +5,37 @@ namespace App\Http\Controllers;
 use App\Models\Excursion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Application;
+use App\Models\ReviewReaction;
 
 class ExcursionController extends Controller
 {
-    public function index()
+
+
+    public function getPrice($id)
     {
-        $excursions = Excursion::all();
-        return view('excursions.index', compact('excursions'));
+        $excursion = Excursion::find($id);
+        return response()->json(['price' => $excursion->price]);
     }
+
+    public function landing()
+    {
+        $excursions = Excursion::take(6)->get(); 
+        return view('landing', compact('excursions'));
+    }
+    
+
+
+    public function index()
+{
+    $excursions = Excursion::paginate(10);
+    $applications = Application::with(['user', 'excursion'])
+        ->latest()
+        ->paginate(10);
+    
+    return view('excursions.index', compact('excursions', 'applications'));
+}
+
 
     public function create()
     {
@@ -96,4 +119,69 @@ class ExcursionController extends Controller
         
         return redirect()->route('excursions.index')->with('success', 'Экскурсия успешно удалена!');
     }
+
+    public function show($id)
+    {
+        $excursion = Excursion::findOrFail($id);
+        return view('user.show', compact('excursion'));
+    }
+
+    // Создание заявки на экскурсию
+    public function apply(Request $request, $id)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'status' => 'required|string',
+        ]);
+
+        Application::create([
+            'user_id' => $request->user_id,
+            'excursion_id' => $id,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back()->with('success', 'Заявка успешно отправлена!');
+    }
+
+
+    public function search(Request $request)
+{
+    $query = $request->input('query');
+    $excursions = Excursion::where('title', 'LIKE', "%{$query}%")
+        ->orWhere('description', 'LIKE', "%{$query}%")
+        ->get();
+
+    return view('user.dashboard', compact('excursions')); 
+}
+
+
+public function react(Request $request, Excursion $excursion)
+{
+    $user = auth()->user();
+    $emoji = $request->input('emoji');
+
+    // Проверка существующей реакции
+    $existingReaction = ReviewReaction::where([
+        'excursion_id' => $excursion->id,
+        'user_id' => $user->id,
+        'emoji' => $emoji
+    ])->first();
+
+    if ($existingReaction) {
+        // Удаление существующей реакции
+        $existingReaction->delete();
+    } else {
+        // Создание новой реакции
+        ReviewReaction::create([
+            'excursion_id' => $excursion->id,
+            'user_id' => $user->id,
+            'emoji' => $emoji
+        ]);
+    }
+
+    return back();
+}
+
+
+
 }
