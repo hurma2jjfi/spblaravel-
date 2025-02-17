@@ -29,6 +29,10 @@ class Excursion extends Model
             ->groupBy('emoji')
             ->pluck('count', 'emoji');
     }
+
+
+
+    
 }
 
 

@@ -319,95 +319,79 @@ input[type="date"] {
     opacity: 1;
 }
 
-footer {
+.footer {
     width: 100%;
-    height: 322px;
     background-color: #000000;
+    padding: 40px; /* Отступы для футера */
+    display: flex;
+    justify-content: center;
     margin-top: 200px;
-    display: flex;
-    justify-content: center;
-
+    height: 322px;
 }
 
-/* .footer__nav {
-    display: flex;
-    justify-content: center;
-    gap: 66px;
-    padding: 0;
-    margin: -50px;
-} */
-
-.footer__nav {
-    display: flex;
-    padding-left: 247px;
-    gap: 66px;
-    position: relative;
-    top: -50px;
-}
-
-
-.nav__footer {
-    width: 1520px;
-    height: 108px;
+.container {
+    max-width: 1200px; /* Максимальная ширина контейнера */
+    width: inherit; /* Ширина на всю доступную ширину */
+    display: grid;
+    grid-template-columns: repeat(3, auto); /* Три колонки для логотипа, навигации и соцсетей */
+    align-items: center; /* Центрирование по вертикали */
 }
 
 .logo__footer {
-padding-top: 107px;
+    grid-column: span 1; /* Логотип занимает одну колонку */
+}
+
+.nav__footer {
+    grid-column: span 1; /* Навигация занимает одну колонку */
+}
+
+.footer__nav {
+    display: flex;
+    gap: 40px; /* Промежуток между пунктами навигации */
 }
 
 .footer__nav li {
     list-style: none;
-    padding: 0;
-    margin: 0;
 }
 
 .footer__nav a {
     color: #fff;
     text-decoration: none;
+}
 
+.social__media__wrap {
+    grid-column: span 1; /* Социальные сети занимают одну колонку */
+    display: flex;
+    justify-content: flex-end; /* Выровнять по правому краю */
+    align-items: center; /* Центрирование по вертикали */
 }
 
 .social {
     display: flex;
-    gap: 20px;
-    position: relative;
-    top: -100px;
-    right: 140px;
+    gap: 20px; /* Промежуток между иконками соцсетей */
 }
 
 .social li {
     list-style: none;
-    cursor: pointer;
-}
-
-.social__media__wrap {
-    display: flex;
-    justify-content: end;
-    margin-right: 100px;
 }
 
 .sub {
-    width: 249px;
-    height: 59px;
-    padding: 12px 25px;
+    width: auto; /* Автоширина для кнопки */
+    height: auto; /* Автовысота для кнопки */
+    padding: .5em .75em; /* Отступы внутри кнопки */
     border: none;
-    font-size: 20px;
-    background: none;
-    border: 1px solid transparent;
-    border-image: linear-gradient(to right, #00FFC2, #FF0B8F) 1; 
-    border-image-slice: 1;
+    font-size: larger; /* Размер шрифта кнопки */
+    background-color: transparent;
+    border-radius: .5em; /* Закругленные углы */
+    border: solid transparent; /* Прозрачная рамка по умолчанию */
+    border-image: linear-gradient(to right, #00FFC2, #FF0B8F) .5; 
     color: #fff;
 }
 
 .btn__submit {
-    display: flex;
-    justify-content: end;
-    height: 59px;
-    padding-top: 10px;
-    position: relative;
-    right: -50px;
-    top: -110px;
+    margin-left: auto; /* Сдвинуть кнопку вправо в контейнере соцсетей */
 }
+
 
 
 .menu-burger__header {
@@ -544,13 +528,14 @@ padding-top: 107px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Увеличенная тень при наведении */
 }
 
-
-
-
-
-
-  
   @media (max-width: 768px) {
+
+
+    .footer {
+        height: 100vh; /* Высота занимает весь экран на мобильных устройствах */
+        padding: 20px; /* Отступы внутри футера для удобства */
+        box-sizing: border-box; /* Учитываем отступы в размере футера */
+    }
 
     #form__excursion {
         width: 559px;
@@ -736,8 +721,7 @@ padding-top: 107px;
         margin: 0;
         justify-content: center;
         align-items: center;
-        margin-left: 690px;
-        margin-top: 110px;
+ 
     }
 
     .social {
@@ -761,6 +745,11 @@ padding-top: 107px;
         left: 745px;
         top: -5px;
     }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
   }
 
   @media (min-width: 376px) and (max-width: 500px) {
@@ -777,3 +766,4 @@ padding-top: 107px;
         max-width: 350px; /* Ограничиваем максимальную шириной */
     }
 }
+

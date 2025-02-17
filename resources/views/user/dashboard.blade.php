@@ -23,86 +23,65 @@
     <h2>Список экскурсий:</h2>
 
     @if(session('success'))
-        <div>{{ session('success') }}</div>
+        <div class="success-message">{{ session('success') }}</div>
     @endif
 
     @if(isset($excursions) && $excursions->isEmpty())
-        <p>Экскурсии не найдены.</p>
+        <p class="no-results">Экскурсии не найдены.</p>
     @else
-        <table style="border-collapse: collapse; width: 100%;">
-            <thead>
-                <tr>
-                    <th style="border: 1px solid black; padding: 8px;">Изображение</th>
-                    <th style="border: 1px solid black; padding: 8px;">Название</th>
-                    <th style="border: 1px solid black; padding: 8px;">Описание</th>
-                    <th style="border: 1px solid black; padding: 8px;">Цена</th>
-                    <th style="border: 1px solid black; padding: 8px;">Длительность</th>
-                    <th style="border: 1px solid black; padding: 8px;">Действия</th>
-                    <th style="border: 1px solid black; padding: 8px;">Реакции</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($excursions as $excursion)
-                    <tr>
-                        <td style="border: 1px solid black; padding: 8px;">
-                            @if($excursion->photo)
-                                <img src="{{ asset('storage/' . $excursion->photo) }}" alt="{{ $excursion->title }}" style="width: 100px; height: auto;">
-                            @else
-                                <span>Изображение отсутствует</span>
-                            @endif
-                        </td>
-                        <td style="border: 1px solid black; padding: 8px;">
-                            <a href="{{ route('excursions.show', $excursion->id) }}">{{ $excursion->title }}</a>
-                        </td>
-                        <td style="border: 1px solid black; padding: 8px;">{{ $excursion->description }}</td>
-                        <td style="border: 1px solid black; padding: 8px;">{{ $excursion->price }}₽</td>
-                        <td style="border: 1px solid black; padding: 8px;">{{ $excursion->duration }}ч.</td>
-                        <td style="border: 1px solid black; padding: 8px;">
-                            <form action="{{ route('excursions.apply', $excursion->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                                <input type="hidden" name="status" value="В ожидании">
-                                <button type="submit">Подать заявку</button>
-                            </form>
-                        </td>
-                        <td style="border: 1px solid black; padding: 8px;">
-                            <div class="emoji-reactions">
-                                @php
-                                    $reactions = $excursion->reactions->groupBy('emoji');
-                                @endphp
-                                
-                                <div class="reaction-buttons">
-                                    @foreach(['👍', '❤️', '😮', '😂', '😢'] as $emoji)
-                                        <form action="{{ route('excursions.react', $excursion->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            <input type="hidden" name="emoji" value="{{ $emoji }}">
-                                            <button class="emoji" type="submit">
-                                                {{ $emoji }} 
-                                                <span class="reaction-count">
-                                                    {{ $reactions->get($emoji)?->count() ?? 0 }}
-                                                </span>
-                                            </button>
-                                        </form>
-                                    @endforeach
-                                </div>
+        <div class="excursions-grid">
+            @foreach ($excursions as $excursion)
+                <div class="excursion-card">
+                    <div class="excursion-image">
+                        @if($excursion->photo)
+                            <img src="{{ asset('storage/' . $excursion->photo) }}" alt="{{ $excursion->title }}">
+                        @else
+                            <span>Изображение отсутствует</span>
+                        @endif
+                    </div>
+                    <div class="excursion-details">
+                        <h3><a href="{{ route('excursions.show', $excursion->id) }}">{{ $excursion->title }}</a></h3>
+                        <p>{{ $excursion->description }}</p>
+                        <div class="excursion-info">
+                            <span>Цена: {{ $excursion->price }}₽</span>
+                            <span>Длительность: {{ $excursion->duration }}ч.</span>
+                        </div>
+                        <form action="{{ route('excursions.apply', $excursion->id) }}" method="POST" class="apply-form">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                            <input type="hidden" name="status" value="В ожидании">
+                            <button class="podat" type="submit">Подать заявку</button>
+                        </form>
+                        <div class="emoji-reactions">
+                            @php
+                                $reactions = $excursion->reactions->groupBy('emoji');
+                            @endphp
+                            <div class="reaction-buttons">
+                                @foreach(['👍', '❤️', '😮', '😂', '😢'] as $emoji)
+                                    <form action="{{ route('excursions.react', $excursion->id) }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="emoji" value="{{ $emoji }}">
+                                        <button class="emoji" type="submit">
+                                            {{ $emoji }} 
+                                            <span class="reaction-count">
+                                                {{ $reactions->get($emoji)?->count() ?? 0 }}
+                                            </span>
+                                        </button>
+                                    </form>
+                                @endforeach
                             </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     @endif
 
-
-    
-    <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+    <form action="{{ route('logout') }}" method="POST" class="logout-form">
         @csrf
         <button type="submit">Выйти</button> 
     </form>
 
-
-
-
-<script src="{{ asset('js/dashboard.js') }}"></script>
+    <script src="{{ asset('js/dashboard.js') }}"></script>
 </body>
 </html>

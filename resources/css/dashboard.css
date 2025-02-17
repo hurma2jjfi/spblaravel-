@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+}
+
+h1, h2 {
+    color: #222;
+}
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 8px;
+    width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    padding: 8px 12px;
+    background-color: #0084ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #000000;
+}
+
+.podat:hover {
+    background-color: #ff00c8;
+    transition: 0.6s;
+}
+
+.reaction-buttons .emoji:hover {
+    color: #ffffff;
+}
+
+/* Сообщения */
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.no-results {
+    color: #666;
+    font-style: italic;
+}
+
+/* Сетка экскурсий */
+.excursions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.excursion-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative; /* Для позиционирования блока с эмодзи */
+}
+
+.excursion-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.excursion-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.excursion-details {
+    padding: 15px;
+}
+
+.excursion-details h3 {
+    margin-top: 0;
+    font-size: 1.25rem;
+}
+
+.excursion-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.apply-form {
+    margin-top: 10px;
+}
+
+.apply-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff00c8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.apply-form button:hover {
+    background-color: #000000;
+}
+
+/* Блок с эмодзи */
+.emoji-reactions {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Скрыт по умолчанию */
+    transition: opacity 0.3s ease;
+    margin-top: 112px;
+}
+
+.reaction-count {
+    color: #fff;
+}
+
+.excursion-card:hover .emoji-reactions {
+    opacity: 1; /* Показываем при наведении */
+}
+
+.reaction-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.emoji {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 16px;
+    color: #222;
+}
+
+.emoji:hover {
+    transform: scale(1.2);
+}
+
+.reaction-count {
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+/* Кнопка выхода */
+.logout-form {
+    margin-top: 20px;
+}
+
+.logout-form button {
+    background-color: #ff4757;
+}
+
+.logout-form button:hover {
+    background-color: #cc2e3a;
+}
+
+

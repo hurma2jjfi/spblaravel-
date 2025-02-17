@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --font-bace: 'Roboto', sans-serif;
+    --font-accent: 'Bebas Neue', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-bace);
+    background-color: #212121; /* Темный фон */
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.logo img {
+    width: 100px; /* Ширина логотипа */
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+h1 {
+    font-size: 24px; /* Размер заголовка */
+    margin-bottom: 10px; /* Отступ снизу */
+}
+
+.error-list {
+    color: red; /* Цвет ошибок */
+    margin-bottom: 15px; /* Отступ снизу для списка ошибок */
+}
+
+form {
+    background-color: #212121; /* Фон формы */
+    padding: 20px; /* Внутренние отступы формы */
+    border-radius: 8px; /* Закругленные углы */
+    width: 300px; /* Ширина формы */
+}
+
+.input-wrapper {
+    position: relative;
+    margin-bottom: 15px; /* Отступ между полями ввода */
+}
+
+.input-wrapper label {
+    position: absolute;
+    top: 43%; /* Центрирование по вертикали */
+    left: 10px; /* Отступ слева */
+    transform: translateY(-50%); /* Корректировка вертикального выравнивания */
+    font-size: 14px; /* Размер шрифта метки */
+    color: #aaa; /* Цвет метки */
+    pointer-events: none; /* Предотвращение взаимодействия с меткой при клике на поле ввода */
+}
+
+input[type="text"]:focus + label,
+input[type="email"]:focus + label,
+input[type="password"]:focus + label,
+input[type="text"]:not(:placeholder-shown) + label,
+input[type="email"]:not(:placeholder-shown) + label,
+input[type="password"]:not(:placeholder-shown) + label {
+    top: -2px; 
+    font-size: 12px; 
+    color: #8774e1; 
+}
+
+button.submit__auth {
+    background-color: #8774e1; /* Цвет кнопки */
+    color: white; /* Цвет текста кнопки */
+    border: none; /* Без рамки */
+    padding: 10px; /* Внутренние отступы кнопки */
+    border-radius: 4px; /* Закругленные углы кнопки */
+    font-size: 16px; /* Размер шрифта кнопки */
+}
+
+button.submit__auth:hover {
+    background-color: #6e60b8; /* Цвет кнопки при наведении */
+}
+
+a {
+    text-decoration: none; /* Убираем подчеркивание у ссылки */
+    color: #8774e1; /* Цвет ссылки */
+}
+
+:root {
+    --font-bace: 'Roboto', sans-serif;
+    --font-accent: 'Bebas Neue', sans-serif;
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+
+body {
+    font-family: var(--font-bace);
+    background-color: #212121; /* Светлый фон */
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.logo img {
+    width: 100px; /* Ширина логотипа */
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+h1 {
+    font-size: 24px; /* Размер заголовка */
+    margin-bottom: 10px; /* Отступ снизу */
+}
+
+p {
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+
+input[type="email"],
+input[type="password"] {
+    width: 100%; /* Полная ширина поля ввода */
+    padding: 10px; /* Внутренние отступы поля ввода */
+    margin-bottom: 15px; /* Отступ снизу */
+    border: 1px solid #dfe1e5; /* Цвет рамки поля ввода */
+    border-radius: 4px; /* Закругленные углы полей ввода */
+    font-size: 16px; /* Размер шрифта в полях ввода */
+}
+
+input[type="checkbox"] {
+    margin-right: 8px; /* Отступ справа от чекбокса */
+}
+
+.checkbox__wrapper {
+    display: flex;
+    align-items: center; /* Align checkbox and label vertically */
+    margin-bottom: 15px; /* Space below the checkbox */
+}
+
+.checkbox__wrapper input[type="checkbox"] {
+    width: auto; /* Set width to auto for proper sizing */
+    margin-right: 8px; /* Space between checkbox and label */
+}
+
+
+.checkbox-label {
+    font-size: 16px; /* Match font size with input fields */
+    color: #ffffff; /* Ensure label text is visible against dark background */
+}
+
+
+button {
+    background-color: #8774e1; /* Цвет кнопки */
+    color: white; /* Цвет текста кнопки */
+    border: none; /* Без рамки */
+    padding: 10px; /* Внутренние отступы кнопки */
+    border-radius: 4px; /* Закругленные углы кнопки */
+    font-size: 16px; /* Размер шрифта кнопки */
+    cursor: pointer; /* Курсор при наведении на кнопку */
+    transition: background-color 0.3s ease; /* Плавный переход цвета кнопки */
+}
+
+button:hover {
+    background-color: #8774e1; /* Цвет кнопки при наведении */
+}
+
+a {
+    text-decoration: none; /* Убираем подчеркивание у ссылки */
+    color: #8774e1; /* Цвет ссылки */
+    margin-top: 15px; /* Отступ сверху от ссылки */
+}
+
+a:hover {
+    text-decoration: underline; /* Подчеркивание ссылки при наведении */
+}
+
+.error-list {
+    color: red; /* Цвет ошибок */
+    margin-bottom: 15px; /* Отступ снизу для списка ошибок */
+}
+
+.checkbox__wrapper {
+    color: #aaa;
+}
+
+.input-wrapper {
+    position: relative;
+    margin-bottom: 15px; /* Space between input fields */
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%; /* Full width of the input field */
+    padding: 10px; /* Internal padding */
+    margin-bottom: 5px; /* Reduced bottom margin for closer alignment with label */
+    border: 1px solid #dfe1e5; /* Border color */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+}
+
+
+
+input[type="password"]:hover,
+input[type="email"]:hover
+{
+    border: 1px solid #8774e1; 
+}
+
+
+
+.input-wrapper label {
+    position: absolute;
+    top: 43%; /* Center vertically */
+    left: 10px; /* Space from left */
+    transform: translateY(-50%); /* Adjust vertical alignment */
+    font-size: 14px; /* Font size of label */
+    color: #aaa; /* Placeholder color */
+    pointer-events: none; /* Prevent interference with clicks */
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+    background-color: #212121; /* Match form background */
+    padding: 0 4px; /* Add horizontal padding to cover border */
+}
+
+
+input[type="email"]:focus + label,
+input[type="password"]:focus + label,
+input[type="email"]:not(:placeholder-shown) + label,
+input[type="password"]:not(:placeholder-shown) + label {
+    top: -2px; 
+    font-size: 12px; 
+    color: #8774e1; 
+}
+
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="phone"]
+{
+    width: 100%; 
+    padding: 14px;
+    border: 1px solid #dfe1e5;
+    border-radius: 4px;
+    font-size: 16px; 
+    background-color: #212121; 
+    color: #ffffff;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus,
+input[type="phone"]:focus {
+    border-color: #8774e1; 
+}
+
+.submit__auth {
+    width: 330px;
+    height: 48px;
+}
+
+.submit__auth:hover {
+    cursor: pointer;
+    background-color: #6e60b8;
+}
+
+
+.checkbox__wrapper {
+    display: flex;
+    align-items: center; /* Выравнивание по вертикали */
+    margin-bottom: 15px; /* Отступ снизу */
+}
+
+.custom-toggle {
+    position: relative;
+    display: inline-block;
+    width: 60px; /* Ширина переключателя */
+    height: 34px; /* Высота переключателя */
+}
+
+.custom-toggle input {
+    opacity: 0; /* Скрываем стандартный чекбокс */
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc; /* Цвет фона для выключенного состояния */
+    transition: .4s; /* Плавный переход */
+    border-radius: 34px; /* Закругленные углы */
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px; /* Высота ползунка */
+    width: 26px; /* Ширина ползунка */
+    left: 4px; /* Отступ слева */
+    bottom: 4px; /* Отступ снизу */
+    background-color: white; /* Цвет ползунка */
+    transition: .4s; /* Плавный переход */
+    border-radius: 50%; /* Круглая форма ползунка */
+}
+
+/* Состояние, когда чекбокс отмечен */
+input:checked + .slider {
+    background-color: #6e60b8; /* Цвет фона для включенного состояния */
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px); /* Перемещение ползунка вправо при включении */
+}
+
+.text {
+    position: relative;
+    font-size: 16px;
+    left: 100px;
+    top: -14px;
+    white-space: nowrap;
+}
+
+

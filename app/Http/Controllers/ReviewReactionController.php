@@ -7,31 +7,57 @@ use App\Models\Review;
 use App\Models\ReviewReaction;
 use Illuminate\Support\Facades\Auth;
 
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Review;
+use App\Models\ReviewReaction;
+use Illuminate\Support\Facades\Auth;
+
 class ReviewReactionController extends Controller
 {
-    public function react(Request $request, Review $review)
+    public function react(Request $request, Review $review) 
     {
         $validated = $request->validate([
-            'emoji' => 'required|in:👍,👎,❤️,😂,😱'
+            'emoji' => 'required|in:👍,❤️,😮,😂,😢'
         ]);
 
+      
         $existingReaction = ReviewReaction::where([
-            'review_id' => $review->id,
+            'excursion_id' => $review->id,
             'user_id' => Auth::id()
         ])->first();
 
         if ($existingReaction) {
-            // Обновление существующей реакции
-            $existingReaction->update($validated);
+ 
+  
+            if ($existingReaction->emoji === $validated['emoji']) {
+                $existingReaction->delete();
+                return back()->with('success', 'Реакция удалена');
+            } else {
+               
+                $existingReaction->delete();
+                
+        
+                ReviewReaction::create([
+                    'excursion_id' => $review->id,
+                    'user_id' => Auth::id(),
+                    'emoji' => $validated['emoji']
+                ]);
+                
+                return back()->with('success', 'Реакция обновлена');
+            }
         } else {
-            // Создание новой реакции
+       
+            
             ReviewReaction::create([
-                'review_id' => $review->id,
+                'excursion_id' => $review->id,
                 'user_id' => Auth::id(),
                 'emoji' => $validated['emoji']
             ]);
+            
+            return back()->with('success', 'Реакция сохранена');
         }
-
-        return back()->with('success', 'Реакция сохранена');
     }
 }
